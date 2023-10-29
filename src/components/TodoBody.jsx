@@ -14,10 +14,17 @@ export const TodoBody = () => {
   const { todos } = useSelector((state) => state.todos);
   const dispatch = useDispatch();
   const [filteredTodos, setFilteredTodos] = useState(todos);
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
-    setFilteredTodos(todos);
-  }, [todos]);
+    if (filter === "active") {
+      setFilteredTodos(todos.filter((todo) => !todo.confirmed));
+    } else if (filter === "completed") {
+      setFilteredTodos(todos.filter((todo) => todo.confirmed));
+    } else {
+      setFilteredTodos(todos);
+    }
+  }, [todos, filter]);
 
   const handleRemoveTodo = (id) => {
     if (!edit.id) {
@@ -73,15 +80,12 @@ export const TodoBody = () => {
     }
   };
 
-  const filterActive = (filter) => {
-    const filtered =
-      filter === "active"
-        ? todos.filter((todo) => !todo.confirmed)
-        : filter === "completed"
-        ? todos.filter((todo) => todo.confirmed)
-        : todos;
+  const handleFilterChange = (selectedFilter) => {
+    setFilter(selectedFilter);
+  };
 
-    setFilteredTodos(filtered);
+  const isEditing = (id) => {
+    return edit.id === id;
   };
 
   return (
@@ -92,7 +96,7 @@ export const TodoBody = () => {
           key={index}
         >
           <div>
-            {edit.id !== index && (
+            {!isEditing(index) && (
               <span
                 className={`bi ${
                   todo.confirmed ? "bi-check-circle-fill" : "bi-circle"
@@ -102,7 +106,7 @@ export const TodoBody = () => {
             )}
           </div>
           <div>
-            {edit.id === index ? (
+            {isEditing(index) ? (
               <input
                 className="input-edit"
                 type="text"
@@ -121,7 +125,7 @@ export const TodoBody = () => {
             )}
           </div>
           <div>
-            {edit.id === index ? (
+            {isEditing(index) ? (
               <span
                 // className="bi bi-save2"
                 onClick={() => handleEditSave(index)}
@@ -136,7 +140,7 @@ export const TodoBody = () => {
                 ></span>
               )
             )}
-            {edit.id !== index && (
+            {!isEditing(index) && (
               <span
                 className="bi bi-trash-fill"
                 onClick={() => handleRemoveTodo(index)}
@@ -145,7 +149,10 @@ export const TodoBody = () => {
           </div>
         </div>
       ))}
-      <TodoFooter filterActive={filterActive} />
+      {filteredTodos.length === 0 && (
+        <p className="text-center">No tasks found.</p>
+      )}
+      <TodoFooter filterActive={handleFilterChange} />
     </>
   );
 };
