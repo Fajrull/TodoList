@@ -1,0 +1,87 @@
+.todo-title {
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../img/banner.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+}
+
+.todo-title h1 {
+  display: flex;
+  gap: 300px;
+}
+
+.todo-header {
+  position: relative;
+  top: -80px;
+}
+
+.todo-header input {
+  width: 500px;
+  padding: 12px;
+  margin-right: 12px;
+  border-radius: 8px;
+  border: none;
+}
+
+.todo-header button {
+  background-color: #fff;
+  border: none;
+  font-size: 24px;
+  padding: 6px 12px;
+  color: blue;
+}
+
+.todo-body {
+  width: 560px;
+  padding: 12px;
+  margin: 0 auto;
+  border-radius: 4px;
+  font-size: 24px;
+  list-style: none;
+  box-shadow: 4px 4px 4px 4px #dedede;
+}
+
+.todo-body span {
+  margin: 12px;
+  cursor: pointer;
+}
+
+.todo-body .bi-pencil-square,
+.bi-save2 {
+  color: #f8d407;
+}
+
+.todo-body .bi-trash-fill {
+  color: crimson;
+}
+
+.todo-body .bi-check-circle-fill {
+  color: green;
+}
+
+.todo-body li {
+  max-width: 300px;
+  text-align: center;
+}
+
+.todo-body .input-edit {
+  width: 400px;
+  padding-inline: 12px;
+  border-radius: 12px;
+}
+
+.todo-footer {
+  width: 560px;
+  padding: 12px 18px 0px 18px;
+  margin-inline: auto;
+  margin-bottom: 42px;
+  border-radius: 4px;
+  font-size: 16px;
+  list-style: none;
+  box-shadow: 4px 4px 4px 4px #dedede;
+}
