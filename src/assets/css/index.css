@@ -77,11 +77,34 @@
 
 .todo-footer {
   width: 560px;
-  padding: 12px 18px 0px 18px;
+  padding: 12px;
   margin-inline: auto;
   margin-bottom: 42px;
   border-radius: 4px;
   font-size: 16px;
   list-style: none;
   box-shadow: 4px 4px 4px 4px #dedede;
+}
+
+@media (max-width: 575.98px) {
+  .todo-header input {
+    width: 320px;
+  }
+
+  .todo-title h1 {
+    display: flex;
+    gap: 50px;
+    font-size: 32px;
+    margin: 0px 12px 12px 12px;
+    text-align: center;
+  }
+
+  .todo-body,
+  .todo-footer {
+    width: 380px;
+  }
+  .todo-body li,
+  .todo-body .input-edit {
+    max-width: 200px;
+  }
 }

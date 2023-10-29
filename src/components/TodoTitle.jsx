@@ -3,13 +3,7 @@ import React from "react";
 
 const TodoTitle = () => {
   return (
-    <div className="todo-title">
-      {
-        <h1>
-          TodoList <span className="bi bi-moon-fill"></span>
-        </h1>
-      }
-    </div>
+    <div className="todo-title">{<h1>What's The plan for today?</h1>}</div>
   );
 };
 

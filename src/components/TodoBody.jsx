@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   removeTodo,
@@ -7,11 +7,17 @@ import {
   editTodo,
 } from "../redux/reducer/todoReducer";
 import swal from "sweetalert";
+import TodoFooter from "./TodoFooter";
 
 export const TodoBody = () => {
   const [edit, setEdit] = useState({ id: null, text: "" });
   const { todos } = useSelector((state) => state.todos);
   const dispatch = useDispatch();
+  const [filteredTodos, setFilteredTodos] = useState(todos);
+
+  useEffect(() => {
+    setFilteredTodos(todos);
+  }, [todos]);
 
   const handleRemoveTodo = (id) => {
     if (!edit.id) {
@@ -67,9 +73,20 @@ export const TodoBody = () => {
     }
   };
 
+  const filterActive = (filter) => {
+    const filtered =
+      filter === "active"
+        ? todos.filter((todo) => !todo.confirmed)
+        : filter === "completed"
+        ? todos.filter((todo) => todo.confirmed)
+        : todos;
+
+    setFilteredTodos(filtered);
+  };
+
   return (
     <>
-      {todos.map((todo, index) => (
+      {filteredTodos.map((todo, index) => (
         <div
           className={`todo-body card d-flex flex-row justify-content-between align-items-center`}
           key={index}
@@ -128,6 +145,7 @@ export const TodoBody = () => {
           </div>
         </div>
       ))}
+      <TodoFooter filterActive={filterActive} />
     </>
   );
 };
