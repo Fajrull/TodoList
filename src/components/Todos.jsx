@@ -4,6 +4,7 @@ import React from "react";
 import TodoTitle from "./TodoTitle";
 import TodoHeader from "./TodoHeader";
 import { TodoBody } from "./TodoBody";
+import TodoFooter from "./TodoFooter";
 
 const Todos = () => {
   return (
@@ -11,6 +12,7 @@ const Todos = () => {
       <TodoTitle />
       <TodoHeader />
       <TodoBody />
+      <TodoFooter />
     </>
   );
 };

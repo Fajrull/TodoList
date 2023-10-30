@@ -18,7 +18,7 @@ const TodoHeader = () => {
       return;
     }
 
-    dispatch(addTodo({ text: add, confirmed: false }));
+    dispatch(addTodo({ text: add, confirmed: false, status: false }));
     setAdd("");
   };
 

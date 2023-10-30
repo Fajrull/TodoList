@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   todos: [],
+  filter: "all", // Add a new filter state
 };
 
 export const todosSlice = createSlice({
@@ -30,11 +31,13 @@ export const todosSlice = createSlice({
         todo.confirmed = updatedTodo.confirmed;
       }
     },
+    setFilter: (state, action) => {
+      state.filter = action.payload; // Add a new action to set the filter
+    },
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { addTodo, removeTodo, toggleConfirmed, editTodo } =
+export const { addTodo, removeTodo, toggleConfirmed, editTodo, setFilter } =
   todosSlice.actions;
 
 export default todosSlice.reducer;
