@@ -58,6 +58,12 @@ export const TodoBody = () => {
     dispatch(toggleConfirmed({ id }));
   };
 
+  const handleEnterKey = (event, id) => {
+    if (event.key === "Enter") {
+      saveEditedTodo(id);
+    }
+  };
+
   return (
     <>
       {todos.map((todo, index) => {
@@ -87,6 +93,7 @@ export const TodoBody = () => {
                     type="text"
                     value={editedText}
                     onChange={(e) => setEditedText(e.target.value)}
+                    onKeyDown={(e) => handleEnterKey(e, index)}
                     className="input-edit"
                   />
                 ) : (
